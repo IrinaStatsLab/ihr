@@ -198,7 +198,7 @@ episode_single = function(data, dur_length, end_length, return_data, dt0, inter_
 #' \item{time}{Interpolated timestamps}
 #' \item{hr}{heart rate in minutes}
 #'
-#' @details Episodes are calculated using the thresholds: sedentary/sleep (<20% HRR), moderate (40–59% HRR), and vigorous (≥60% HRR)
+#' @details Episodes are calculated using the thresholds: sedentary/sleep (<20% HRR), moderate (40–59% HRR), and vigorous (>=60% HRR)
 #'
 #' @references
 #' Using Heart Rate and Accelerometry to Define Quantity and Intensity of Physical Activity in Older Adults

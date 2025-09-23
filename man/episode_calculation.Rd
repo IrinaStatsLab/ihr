@@ -56,7 +56,7 @@ The function determines episodes or events, calculates summary statistics,
 and optionally returns data with episode label columns added
 }
 \details{
-Episodes are calculated using the thresholds: sedentary/sleep (<20\% HRR), moderate (40–59\% HRR), and vigorous (≥60\% HRR)
+Episodes are calculated using the thresholds: sedentary/sleep (<20\% HRR), moderate (40–59\% HRR), and vigorous (>=60\% HRR)
 }
 \examples{
 episode_calculation(example_heart_1)
