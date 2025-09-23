@@ -178,10 +178,10 @@ Episodes are defined as distinct periods of times within a subject's heart rate 
 
 `episode_calculation` identifies episodes where heart rate (HR) exceed predefined thresholds. We classify four physical activities stages using definition:
 
-Sedentary/sleep (<20% HRR + RHR), moderate (40–59% HRR + RHR), and vigorous (≥60% HRR + RHR)
+Sedentary/sleep (<20% HRR + RHR), moderate (40–59% HRR + RHR), and vigorous (>=60% HRR + RHR)
 
 For the episode calculation, to make sure our calculations for the episode are accurate, we classify to the previous defined thresholds:
-Sedentary/sleep (<20% HRR + RHR), moderate (>=40% HRR + RHR), and vigorous (≥60% HRR + RHR)
+Sedentary/sleep (<20% HRR + RHR), moderate (>=40% HRR + RHR), and vigorous (>=60% HRR + RHR)
 
 For each episode, the function computes summary statistics, including:
 1. Average episodes per day.
