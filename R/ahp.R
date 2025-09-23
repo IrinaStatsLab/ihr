@@ -44,8 +44,8 @@ ahp <- function(data, maxd = 14, inter_gap = 15, dt0 = 1, tz = "", daily = TRUE)
   # Calculate range of measurements
   out_range = percent_nonmissing(data)
 
-  RHR_data <- calculate_RHR(data)
-  HRR_data <- calculate_HRR(data)
+  RHR_data <- calculate_RHR(data, tz = tz)
+  HRR_data <- calculate_HRR(data, tz = tz)
 
   # Extract values for subject
   RHR_value <- if (!is.null(RHR_data)) round(RHR_data$RHR[RHR_data$id == subject]) else NA
