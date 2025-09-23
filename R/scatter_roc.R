@@ -64,22 +64,32 @@ scatter_roc <- function(data, timelag = 1, inter_gap = 15, tz = ""){
   # Generating personalized HR Vals
 
   personal_hr <- calculate_HRR(data)
+  add_lines <- F
 
-  personal_hr <- personal_hr |>
-    dplyr::mutate(hr_20 = round(RHR + 0.20 * HRR, 1),
-           hr_40 = round(RHR + 0.40 * HRR, 1),
-           hr_60 = round(RHR + 0.60 * HRR, 1))
+  if(!is.null(personal_hr)){
+    personal_hr <- personal_hr |>
+      dplyr::mutate(hr_20 = round(RHR + 0.20 * HRR, 1),
+                    hr_40 = round(RHR + 0.40 * HRR, 1),
+                    hr_60 = round(RHR + 0.60 * HRR, 1))
+    add_lines <- T
+  } else{
+    message("HR Thresholds could not be computed, no lines will be inputted in the plot")
+  }
 
   .p <- roc_data |>
     ggplot(aes(x = roc, y = hr)) +
     geom_point(alpha = 0.3) +
     geom_vline(xintercept = 0, color = "red", linetype = "dashed", linewidth = 1) +
-    geom_hline(data = personal_hr, aes(yintercept = hr_20), color = "#0073C2", linetype = "dashed", linewidth = 1) +
-    geom_hline(data = personal_hr, aes(yintercept = hr_40), color = "#48BA3C", linetype = "dashed", linewidth = 1) +
-    geom_hline(data = personal_hr, aes(yintercept = hr_60), color = "#F9B500", linetype = "dashed", linewidth = 1) +
     facet_wrap(~id) +
     scale_x_continuous(name = "Rate of Change") +
     scale_y_continuous(name = "Heart Rate (BPM)")
+
+  if(add_lines){
+    .p <- .p +
+    geom_hline(data = personal_hr, aes(yintercept = hr_20), color = "#0073C2", linetype = "dashed", linewidth = 1) +
+      geom_hline(data = personal_hr, aes(yintercept = hr_40), color = "#48BA3C", linetype = "dashed", linewidth = 1) +
+      geom_hline(data = personal_hr, aes(yintercept = hr_60), color = "#F9B500", linetype = "dashed", linewidth = 1)
+  }
 
   return(.p)
 
