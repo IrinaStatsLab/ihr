@@ -50,8 +50,6 @@ plot_daily <- function (data, maxd = 14, inter_gap = 15, tz = "") {
 
   # === Get actual thresholds from HRR ===
   HRR_info <- calculate_HRR(data, tz = tz)
-  HRR_info <- dplyr::filter(HRR_info, id == subject)
-  summary_info <- summary_hr(data)
 
   if (nrow(HRR_info) == 0 || any(is.na(HRR_info$RHR), is.na(HRR_info$HRR))) {
     message("Cannot compute daily heart rate plot: HRR thresholds (RHR/HRR) unavailable. Returning placeholder plot.")
@@ -62,6 +60,9 @@ plot_daily <- function (data, maxd = 14, inter_gap = 15, tz = "") {
                           label = "Daily plot unavailable:\nRHR/HRR could not be computed.")
     )
   }
+
+  HRR_info <- dplyr::filter(HRR_info, id == subject)
+  summary_info <- summary_hr(data)
 
   RHR <- HRR_info$RHR
   HRR <- HRR_info$HRR
