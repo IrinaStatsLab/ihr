@@ -7,7 +7,7 @@
 #' plot_daily(data, maxd = 14, inter_gap = 15, tz = "")
 #'
 #' @param data DataFrame object with column names "id", "time", "hr"
-#' @param maxd \strong{Default: 14.} Number of days to plot. If less than `maxd` days of data are available, all days are plotted.
+#' @param maxd \strong{Default: 14.} Number of days to plot. If less than `maxd` days of data are available, all days are plotted. If number of days within the data is larger than `maxd`, then only the most recent `maxd` days will be plotted.
 #' @param inter_gap The maximum allowable gap (in minutes) for interpolation.
 #' @param tz A character string specifying the time zone to be used. System-specific (see \code{\link{as.POSIXct}}), but " " is the current time zone, and "GMT" is UTC (Universal Time, Coordinated). Invalid values are most commonly treated as UTC, on some platforms with a warning
 #' @return Daily heart rate time series plots for a single subject

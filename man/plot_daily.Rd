@@ -9,7 +9,7 @@ plot_daily(data, maxd = 14, inter_gap = 15, tz = "")
 \arguments{
 \item{data}{DataFrame object with column names "id", "time", "hr"}
 
-\item{maxd}{\strong{Default: 14.} Number of days to plot. If less than \code{maxd} days of data are available, all days are plotted.}
+\item{maxd}{\strong{Default: 14.} Number of days to plot. If less than \code{maxd} days of data are available, all days are plotted. If number of days within the data is larger than \code{maxd}, then only the most recent \code{maxd} days will be plotted.}
 
 \item{inter_gap}{The maximum allowable gap (in minutes) for interpolation.}
 
