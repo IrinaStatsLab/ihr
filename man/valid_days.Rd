@@ -9,7 +9,7 @@ valid_days(data, hour = 10, min_in_hr = 60)
 \arguments{
 \item{data}{Dataframe with column names ("id, "time", "hr")}
 
-\item{hour}{Hour value that a day must have in order for that corresponding day to be considered valid. \strong{Default: 10.}}
+\item{hour}{Minimal number of hours that a day must have in order for that corresponding day to be considered valid. \strong{Default: 10.}}
 
 \item{min_in_hr}{The number of minutes within the hour that an observation must have for an hour to contribute to a valid day. \strong{Default: 60.}}
 }

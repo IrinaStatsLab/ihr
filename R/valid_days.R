@@ -5,7 +5,7 @@
 #' whether a day has more than a pre-specified hours worth of data.
 #'
 #' @param data Dataframe with column names ("id, "time", "hr")
-#' @param hour Hour value that a day must have in order for that corresponding day to be considered valid. \strong{Default: 10.}
+#' @param hour Minimal number of hours that a day must have in order for that corresponding day to be considered valid. \strong{Default: 10.}
 #' @param min_in_hr The number of minutes within the hour that an observation must have for an hour to contribute to a valid day. \strong{Default: 60.}
 #'
 #' @return A tibble item with the columns id, day, full_hours, valid_day
@@ -27,8 +27,8 @@
 #'
 
 valid_days <- function(data, hour = 10, min_in_hr = 60){
-  id = hr = day = minutes_in_hour = full_hours = day = NULL
-  rm(list = c('id', 'hr', 'day', 'minutes_in_hour', 'full_hours', "day"))
+  id = hr = day = minutes_in_hour = full_hours = NULL
+  rm(list = c('id', 'hr', 'day', 'minutes_in_hour', 'full_hours'))
 
   if(min_in_hr > 60){
     message("min_in_hr exceeds 60 minutes, will default to 60 minutes")
