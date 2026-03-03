@@ -5,10 +5,11 @@
 #' For details on computing resting heart rate, see \code{\link{calculate_RHR}}
 
 #' @usage
-#' calculate_HRR(data, method, quantile_val, tz)
+#' calculate_HRR(data, method, rhr_method, quantile_val, tz)
 
 #' @param data A DataFrame object with column names "id", "time", "hr".
 #' @param method \strong{Default: "max-RHR".} A choice for the user to choose which formula they want to use: HRR = max - Resting heart rate ("max-RHR") or HRR = max - min ("max-min")
+#' @param rhr_method \strong{Default: "mean".} Refer to the documentation for \code{\link{calculate_RHR}} for more details.
 #' @param quantile_val A choice for the user to choose which quantile value they want to use(most common 1, if there's strange max value, recommend to use 0.99)
 #' @param tz A character string specifying the time zone to be used. System-specific (see \code{\link{as.POSIXct}}), but " " is the current time zone, and "GMT" is UTC (Universal Time, Coordinated). Invalid values are most commonly treated as UTC, on some platforms with a warning
 
@@ -26,12 +27,15 @@
 #' calculate_HRR(example_heart_1, 'max-min')
 #' calculate_HRR(example_heart_1, quantile_val = 0.99)
 
-calculate_HRR <- function(data, method = "max-RHR", quantile_val = 1, tz = "") {
+calculate_HRR <- function(data, method = c("max-RHR", "max-min"), rhr_method = c("mean", "min"), quantile_val = 1, tz = "") {
   time = hr = id = max_hr = min_hr = RHR = NULL
   rm(list = c('time', 'hr', 'id', 'max_hr', 'min_hr', 'RHR'))
+  method = match.arg(method, c("max-RHR", "max-min"))
+  rhr_method = match.arg(rhr_method, c("mean", "min"))
+
   data$time <- as.POSIXct(data$time, format="%Y-%m-%d %H:%M:%S", tz = tz)
 
-  RHR_data <- calculate_RHR(data, tz = tz)
+  RHR_data <- calculate_RHR(data, method = rhr_method, tz = tz)
 
   # If no RHR data, return NULL
   if (is.null(RHR_data)) {
