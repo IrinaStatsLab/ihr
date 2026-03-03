@@ -4,10 +4,12 @@
 \alias{calculate_RHR}
 \title{Calculate resting heart rate}
 \usage{
-calculate_RHR(data, tz)
+calculate_RHR(data, method, tz)
 }
 \arguments{
 \item{data}{A DataFrame object with column names "id", "time", "hr".}
+
+\item{method}{\strong{Default: "mean".} Method for calculating RHR. Must be either "mean" for average or "min" for minimum HR during 3am-7am}
 
 \item{tz}{A character string specifying the time zone to be used. System-specific (see \code{\link{as.POSIXct}}), but " " is the current time zone, and "GMT" is UTC (Universal Time, Coordinated). Invalid values are most commonly treated as UTC, on some platforms with a warning}
 }
@@ -16,7 +18,7 @@ If a dataframe object is passed, then a tibble object with a column for subject 
 'NA' heartrate values are omitted from the calculation of the summary values.
 }
 \description{
-Computes the resting heart rate (RHR) according to the mean heart rate
+Computes the resting heart rate (RHR) according to the mean/min heart rate
 value between 3am to 7am. See reference for details on computing RHR
 }
 \examples{
